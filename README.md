@@ -2,354 +2,6 @@
 
 A full-featured e-commerce platform built with Flask, SQLAlchemy, and SQLite. This project provides a complete online shopping experience with user management, product catalog, shopping cart, and order processing.
 
-[Tiếng Việt](#tiếng-việt) | [English](#english)
-
----
-
-## English
-
-### 📋 Table of Contents
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Database Schema](#database-schema)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
-
-### ✨ Features
-
-#### User Management
-- **User Registration & Authentication**: Secure user registration with email validation and password hashing
-- **Profile Management**: Users can update their personal information
-- **Role-based Access Control**: Support for regular users, sellers, and administrators
-- **Seller Registration**: Users can register to become sellers and manage their own products
-
-#### Product Management
-- **Product Catalog**: Browse products with pagination and category filtering
-- **Search Functionality**: Search products by name
-- **Product Details**: Detailed product pages with images, descriptions, and pricing
-- **Category System**: Organized product categorization
-- **Best Sellers Carousel**: Featured products based on purchase history
-
-#### Shopping Experience
-- **Shopping Cart**: Add, update, and remove items from cart
-- **Real-time Cart Updates**: Dynamic cart count and total price calculation
-- **Checkout Process**: Secure checkout with shipping address and payment method selection
-- **Order Management**: View order history and order details
-
-#### Seller Features
-- **Seller Dashboard**: Dedicated dashboard for sellers to manage their products
-- **Product CRUD**: Create, read, update, and delete products
-- **Shop Management**: Sellers can manage their shop information
-
-#### Admin Features
-- **Admin Dashboard**: Administrative interface for managing users
-- **User Management**: View, create, update, and delete users
-- **Role Assignment**: Assign seller or admin roles to users
-- **Product Oversight**: View all products in the system
-
-#### Notifications
-- **Real-time Notifications**: In-app notification system for user actions
-- **Notification History**: View and clear notification history
-
-### 🛠 Technology Stack
-
-**Backend:**
-- **Flask 2.3.3**: Python web framework
-- **Flask-SQLAlchemy 3.0.5**: ORM for database operations
-- **Werkzeug 2.3.7**: WSGI utility library with password hashing
-- **SQLite**: Lightweight database
-- **Gunicorn**: WSGI HTTP server for production deployment
-
-**Frontend:**
-- HTML5 templates with Jinja2 templating engine
-- JavaScript for dynamic interactions
-- AJAX for asynchronous operations
-
-**Security:**
-- Password hashing with Werkzeug's SHA-256
-- Session-based authentication
-- CSRF protection
-- Input validation
-
-### 📁 Project Structure
-
-```
-E-shop-E-commerce-Website/
-├── controllers/
-│   ├── __init__.py
-│   └── app.py                 # Main Flask application with all routes
-├── models/
-│   ├── __init__.py
-│   ├── models.py              # SQLAlchemy models
-│   └── init_db.py             # Database initialization script
-├── views/
-│   ├── __init__.py
-│   ├── base.html              # Base template
-│   ├── index.html             # Home page
-│   ├── login.html             # Login page
-│   ├── register.html          # User registration
-│   ├── register_seller.html   # Seller registration
-│   ├── profile.html           # User profile
-│   ├── cart.html              # Shopping cart
-│   ├── checkout.html          # Checkout page
-│   ├── orders.html            # Order history
-│   ├── order_details.html     # Order details
-│   ├── product_detail.html    # Product detail page
-│   ├── seller_dashboard.html  # Seller dashboard
-│   ├── add_product.html       # Add product form
-│   ├── edit_product.html      # Edit product form
-│   ├── admin_users.html       # Admin user management
-│   └── about.html             # About page
-├── sql/
-│   └── schema.sql             # Database schema and sample data
-├── instance/
-│   └── ecommerce.db           # SQLite database (created on first run)
-├── requirements.txt           # Python dependencies
-├── Readme.txt                 # Vietnamese quick start guide
-└── README.md                  # This file
-```
-
-### 🚀 Installation
-
-#### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-
-#### Step-by-Step Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/quangnghia01655/E-shop-E-commerce-Website.git
-   cd E-shop-E-commerce-Website
-   ```
-
-2. **Create a virtual environment (recommended)**
-   ```bash
-   python -m venv venv
-   
-   # On Windows
-   venv\Scripts\activate
-   
-   # On macOS/Linux
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Initialize the database**
-   ```bash
-   python -m models.init_db
-   ```
-   This will create the database at `instance/ecommerce.db` using the schema from `sql/schema.sql`.
-
-5. **Run the application**
-   ```bash
-   python -m controllers.app
-   ```
-
-6. **Access the application**
-   Open your web browser and navigate to: `http://127.0.0.1:5000`
-
-### 📖 Usage
-
-#### For Regular Users
-
-1. **Registration**
-   - Click "Register" in the navigation menu
-   - Fill in your name, email (must contain @), and password
-   - Submit the form to create your account
-
-2. **Shopping**
-   - Browse products on the home page
-   - Use category filters or search bar to find products
-   - Click on a product to view details
-   - Add products to your cart
-   - View your cart and adjust quantities
-   - Proceed to checkout
-
-3. **Order Management**
-   - View your order history in the "Orders" page
-   - Click on an order to see detailed information
-
-#### For Sellers
-
-1. **Become a Seller**
-   - Register as a regular user first
-   - Navigate to "Register as Seller"
-   - Fill in shop name and phone number
-   - Confirm with your password
-
-2. **Manage Products**
-   - Access your seller dashboard
-   - Add new products with images, descriptions, and pricing
-   - Edit existing products
-   - Delete products you no longer sell
-
-#### For Administrators
-
-1. **User Management**
-   - Access the admin users page
-   - View all registered users
-   - Create new users with specific roles
-   - Edit user information and roles
-   - Delete users if necessary
-
-### 🗄 Database Schema
-
-The application uses the following database tables:
-
-#### Users
-- `id`: Primary key
-- `name`: User's full name
-- `email`: Unique email address
-- `password`: Hashed password
-- `is_seller`: Boolean flag for seller status
-- `is_admin`: Boolean flag for admin status
-
-#### Sellers
-- `id`: Primary key
-- `user_id`: Foreign key to Users
-- `shop_name`: Name of the shop
-- `phone`: Contact phone number
-
-#### Categories
-- `id`: Primary key
-- `name`: Category name (unique)
-
-#### Products
-- `id`: Primary key
-- `name`: Product name
-- `price`: Product price
-- `image_url`: URL to product image
-- `description`: Product description
-- `category_id`: Foreign key to Categories
-- `seller_id`: Foreign key to Sellers
-- `total_purchased`: Count of purchases (for best sellers)
-
-#### Carts
-- `id`: Primary key
-- `user_id`: Foreign key to Users
-- `created_at`: Timestamp
-
-#### Cart Items
-- `id`: Primary key
-- `cart_id`: Foreign key to Carts
-- `product_id`: Foreign key to Products
-- `quantity`: Number of items
-
-#### Orders
-- `id`: Primary key
-- `user_id`: Foreign key to Users
-- `total_amount`: Order total
-- `status`: Order status (pending, completed, etc.)
-- `payment_method`: Selected payment method
-- `shipping_address`: Delivery address
-- `created_at`: Timestamp
-
-#### Order Items
-- `id`: Primary key
-- `order_id`: Foreign key to Orders
-- `product_id`: Foreign key to Products
-- `quantity`: Number of items
-- `price`: Price at time of purchase
-
-#### Notifications
-- `id`: Primary key
-- `user_id`: Foreign key to Users
-- `message`: Notification message
-- `created_at`: Timestamp
-- `is_read`: Boolean flag
-
-### 🌐 API Endpoints
-
-#### Authentication Routes
-- `GET` / `POST` `/register` - User registration
-- `GET` / `POST` `/login` - User login
-- `POST` `/logout` - User logout
-- `GET` / `POST` `/register_seller` - Seller registration
-
-#### User Routes
-- `GET /profile` - User profile page
-- `POST /settings` - Update user settings
-
-#### Product Routes
-- `GET /` - Home page with product listing
-- `GET /product/<id>` - Product detail page
-- `GET /about` - About page
-
-#### Shopping Cart Routes
-- `POST /add_to_cart/<product_id>` - Add product to cart
-- `GET /cart` - View shopping cart
-- `POST /update_cart/<cart_id>` - Update cart item quantity
-- `POST /remove_from_cart/<cart_item_id>` - Remove item from cart
-
-#### Checkout & Orders
-- `GET` / `POST` `/checkout` - Checkout process
-- `GET` `/orders` - View order history
-- `GET` `/order_details/<order_id>` - View order details
-
-#### Seller Routes
-- `GET` `/seller_dashboard` - Seller dashboard
-- `GET` / `POST` `/admin/add_product` - Add new product
-- `GET` / `POST` `/edit_product/<product_id>` - Edit product
-- `POST` `/delete_product/<product_id>` - Delete product
-
-#### Admin Routes
-- `GET` `/admin/users` - Admin user management page
-- `GET` `/admin/api/users` - Get all users (API)
-- `POST` `/admin/api/users` - Create new user (API)
-- `POST` `/admin/api/users/<user_id>` - Update user (API)
-- `DELETE` `/admin/api/users/<user_id>` - Delete user (API)
-
-#### Notification Routes
-- `GET` `/api/notifications` - Get user notifications
-- `POST` `/api/notifications/clear` - Clear all notifications
-
-#### Debug Routes
-- `GET` `/debug` - Database debug information
-
-### 🔒 Security Features
-
-- **Password Hashing**: All passwords are hashed using Werkzeug's SHA-256 algorithm
-- **Session Management**: Secure session-based authentication
-- **Role-based Access Control**: Different permission levels for users, sellers, and admins
-- **Input Validation**: Server-side validation for all user inputs
-- **Email Validation**: Basic email format validation
-- **Authorization Checks**: Proper authorization checks before allowing access to protected resources
-
-### 🚀 Deployment
-
-For production deployment with Gunicorn:
-
-```bash
-gunicorn -w 4 -b 0.0.0.0:8000 controllers.app:app
-```
-
-### 📝 Notes
-
-- The application uses SQLite as the database, which is suitable for development and small to medium-sized deployments
-- For production use with high traffic, consider migrating to PostgreSQL or MySQL
-- The default secret key should be changed to a secure random string in production
-- Ensure proper file permissions for the `instance` directory in production
-- To reset the database, delete `instance/ecommerce.db` and run the initialization script again
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### 📄 License
-
-This project is open source and available under the MIT License.
-
----
-
 ## Tiếng Việt
 
 ### 📋 Mục Lục
@@ -697,5 +349,339 @@ Dự án này là mã nguồn mở và có sẵn theo Giấy phép MIT.
 ## 📞 Contact
 
 For issues, questions, or contributions, please open an issue on GitHub or contact the repository owner.
+[Tiếng Việt](#tiếng-việt) | [English](#english)
+
+---
+
+## English
+
+### 📋 Table of Contents
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Database Schema](#database-schema)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
+
+### ✨ Features
+
+#### User Management
+- **User Registration & Authentication**: Secure user registration with email validation and password hashing
+- **Profile Management**: Users can update their personal information
+- **Role-based Access Control**: Support for regular users, sellers, and administrators
+- **Seller Registration**: Users can register to become sellers and manage their own products
+
+#### Product Management
+- **Product Catalog**: Browse products with pagination and category filtering
+- **Search Functionality**: Search products by name
+- **Product Details**: Detailed product pages with images, descriptions, and pricing
+- **Category System**: Organized product categorization
+- **Best Sellers Carousel**: Featured products based on purchase history
+
+#### Shopping Experience
+- **Shopping Cart**: Add, update, and remove items from cart
+- **Real-time Cart Updates**: Dynamic cart count and total price calculation
+- **Checkout Process**: Secure checkout with shipping address and payment method selection
+- **Order Management**: View order history and order details
+
+#### Seller Features
+- **Seller Dashboard**: Dedicated dashboard for sellers to manage their products
+- **Product CRUD**: Create, read, update, and delete products
+- **Shop Management**: Sellers can manage their shop information
+
+#### Admin Features
+- **Admin Dashboard**: Administrative interface for managing users
+- **User Management**: View, create, update, and delete users
+- **Role Assignment**: Assign seller or admin roles to users
+- **Product Oversight**: View all products in the system
+
+#### Notifications
+- **Real-time Notifications**: In-app notification system for user actions
+- **Notification History**: View and clear notification history
+
+### 🛠 Technology Stack
+
+**Backend:**
+- **Flask 2.3.3**: Python web framework
+- **Flask-SQLAlchemy 3.0.5**: ORM for database operations
+- **Werkzeug 2.3.7**: WSGI utility library with password hashing
+- **SQLite**: Lightweight database
+- **Gunicorn**: WSGI HTTP server for production deployment
+
+**Frontend:**
+- HTML5 templates with Jinja2 templating engine
+- JavaScript for dynamic interactions
+- AJAX for asynchronous operations
+
+**Security:**
+- Password hashing with Werkzeug's SHA-256
+- Session-based authentication
+- CSRF protection
+- Input validation
+
+### 📁 Project Structure
+
+```
+E-shop-E-commerce-Website/
+├── controllers/
+│   ├── __init__.py
+│   └── app.py                 # Main Flask application with all routes
+├── models/
+│   ├── __init__.py
+│   ├── models.py              # SQLAlchemy models
+│   └── init_db.py             # Database initialization script
+├── views/
+│   ├── __init__.py
+│   ├── base.html              # Base template
+│   ├── index.html             # Home page
+│   ├── login.html             # Login page
+│   ├── register.html          # User registration
+│   ├── register_seller.html   # Seller registration
+│   ├── profile.html           # User profile
+│   ├── cart.html              # Shopping cart
+│   ├── checkout.html          # Checkout page
+│   ├── orders.html            # Order history
+│   ├── order_details.html     # Order details
+│   ├── product_detail.html    # Product detail page
+│   ├── seller_dashboard.html  # Seller dashboard
+│   ├── add_product.html       # Add product form
+│   ├── edit_product.html      # Edit product form
+│   ├── admin_users.html       # Admin user management
+│   └── about.html             # About page
+├── sql/
+│   └── schema.sql             # Database schema and sample data
+├── instance/
+│   └── ecommerce.db           # SQLite database (created on first run)
+├── requirements.txt           # Python dependencies
+├── Readme.txt                 # Vietnamese quick start guide
+└── README.md                  # This file
+```
+
+### 🚀 Installation
+
+#### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
+
+#### Step-by-Step Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/quangnghia01655/E-shop-E-commerce-Website.git
+   cd E-shop-E-commerce-Website
+   ```
+
+2. **Create a virtual environment (recommended)**
+   ```bash
+   python -m venv venv
+   
+   # On Windows
+   venv\Scripts\activate
+   
+   # On macOS/Linux
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Initialize the database**
+   ```bash
+   python -m models.init_db
+   ```
+   This will create the database at `instance/ecommerce.db` using the schema from `sql/schema.sql`.
+
+5. **Run the application**
+   ```bash
+   python -m controllers.app
+   ```
+
+6. **Access the application**
+   Open your web browser and navigate to: `http://127.0.0.1:5000`
+
+### 📖 Usage
+
+#### For Regular Users
+
+1. **Registration**
+   - Click "Register" in the navigation menu
+   - Fill in your name, email (must contain @), and password
+   - Submit the form to create your account
+
+2. **Shopping**
+   - Browse products on the home page
+   - Use category filters or search bar to find products
+   - Click on a product to view details
+   - Add products to your cart
+   - View your cart and adjust quantities
+   - Proceed to checkout
+
+3. **Order Management**
+   - View your order history in the "Orders" page
+   - Click on an order to see detailed information
+
+#### For Sellers
+
+1. **Become a Seller**
+   - Register as a regular user first
+   - Navigate to "Register as Seller"
+   - Fill in shop name and phone number
+   - Confirm with your password
+
+2. **Manage Products**
+   - Access your seller dashboard
+   - Add new products with images, descriptions, and pricing
+   - Edit existing products
+   - Delete products you no longer sell
+
+#### For Administrators
+
+1. **User Management**
+   - Access the admin users page
+   - View all registered users
+   - Create new users with specific roles
+   - Edit user information and roles
+   - Delete users if necessary
+
+### 🗄 Database Schema
+
+The application uses the following database tables:
+
+#### Users
+- `id`: Primary key
+- `name`: User's full name
+- `email`: Unique email address
+- `password`: Hashed password
+- `is_seller`: Boolean flag for seller status
+- `is_admin`: Boolean flag for admin status
+
+#### Sellers
+- `id`: Primary key
+- `user_id`: Foreign key to Users
+- `shop_name`: Name of the shop
+- `phone`: Contact phone number
+
+#### Categories
+- `id`: Primary key
+- `name`: Category name (unique)
+
+#### Products
+- `id`: Primary key
+- `name`: Product name
+- `price`: Product price
+- `image_url`: URL to product image
+- `description`: Product description
+- `category_id`: Foreign key to Categories
+- `seller_id`: Foreign key to Sellers
+- `total_purchased`: Count of purchases (for best sellers)
+
+#### Carts
+- `id`: Primary key
+- `user_id`: Foreign key to Users
+- `created_at`: Timestamp
+
+#### Cart Items
+- `id`: Primary key
+- `cart_id`: Foreign key to Carts
+- `product_id`: Foreign key to Products
+- `quantity`: Number of items
+
+#### Orders
+- `id`: Primary key
+- `user_id`: Foreign key to Users
+- `total_amount`: Order total
+- `status`: Order status (pending, completed, etc.)
+- `payment_method`: Selected payment method
+- `shipping_address`: Delivery address
+- `created_at`: Timestamp
+
+#### Order Items
+- `id`: Primary key
+- `order_id`: Foreign key to Orders
+- `product_id`: Foreign key to Products
+- `quantity`: Number of items
+- `price`: Price at time of purchase
+
+#### Notifications
+- `id`: Primary key
+- `user_id`: Foreign key to Users
+- `message`: Notification message
+- `created_at`: Timestamp
+- `is_read`: Boolean flag
+
+### 🌐 API Endpoints
+
+#### Authentication Routes
+- `GET` / `POST` `/register` - User registration
+- `GET` / `POST` `/login` - User login
+- `POST` `/logout` - User logout
+- `GET` / `POST` `/register_seller` - Seller registration
+
+#### User Routes
+- `GET /profile` - User profile page
+- `POST /settings` - Update user settings
+
+#### Product Routes
+- `GET /` - Home page with product listing
+- `GET /product/<id>` - Product detail page
+- `GET /about` - About page
+
+#### Shopping Cart Routes
+- `POST /add_to_cart/<product_id>` - Add product to cart
+- `GET /cart` - View shopping cart
+- `POST /update_cart/<cart_id>` - Update cart item quantity
+- `POST /remove_from_cart/<cart_item_id>` - Remove item from cart
+
+#### Checkout & Orders
+- `GET` / `POST` `/checkout` - Checkout process
+- `GET` `/orders` - View order history
+- `GET` `/order_details/<order_id>` - View order details
+
+#### Seller Routes
+- `GET` `/seller_dashboard` - Seller dashboard
+- `GET` / `POST` `/admin/add_product` - Add new product
+- `GET` / `POST` `/edit_product/<product_id>` - Edit product
+- `POST` `/delete_product/<product_id>` - Delete product
+
+#### Admin Routes
+- `GET` `/admin/users` - Admin user management page
+- `GET` `/admin/api/users` - Get all users (API)
+- `POST` `/admin/api/users` - Create new user (API)
+- `POST` `/admin/api/users/<user_id>` - Update user (API)
+- `DELETE` `/admin/api/users/<user_id>` - Delete user (API)
+
+#### Notification Routes
+- `GET` `/api/notifications` - Get user notifications
+- `POST` `/api/notifications/clear` - Clear all notifications
+
+#### Debug Routes
+- `GET` `/debug` - Database debug information
+
+### 🔒 Security Features
+
+- **Password Hashing**: All passwords are hashed using Werkzeug's SHA-256 algorithm
+- **Session Management**: Secure session-based authentication
+- **Role-based Access Control**: Different permission levels for users, sellers, and admins
+- **Input Validation**: Server-side validation for all user inputs
+- **Email Validation**: Basic email format validation
+- **Authorization Checks**: Proper authorization checks before allowing access to protected resources
+
+### 🚀 Deployment
+
+For production deployment with Gunicorn:
+
+```bash
+gunicorn -w 4 -b 0.0.0.0:8000 controllers.app:app
+```
+
+
+---
+
+
 
 **Repository**: [https://github.com/quangnghia01655/E-shop-E-commerce-Website](https://github.com/quangnghia01655/E-shop-E-commerce-Website)

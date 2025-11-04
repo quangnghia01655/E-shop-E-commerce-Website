@@ -270,10 +270,10 @@ The application uses the following database tables:
 ### 🌐 API Endpoints
 
 #### Authentication Routes
-- `GET/POST /register` - User registration
-- `GET/POST /login` - User login
-- `POST /logout` - User logout
-- `GET/POST /register_seller` - Seller registration
+- `GET` / `POST` `/register` - User registration
+- `GET` / `POST` `/login` - User login
+- `POST` `/logout` - User logout
+- `GET` / `POST` `/register_seller` - Seller registration
 
 #### User Routes
 - `GET /profile` - User profile page
@@ -291,29 +291,29 @@ The application uses the following database tables:
 - `POST /remove_from_cart/<cart_item_id>` - Remove item from cart
 
 #### Checkout & Orders
-- `GET/POST /checkout` - Checkout process
-- `GET /orders` - View order history
-- `GET /order_details/<order_id>` - View order details
+- `GET` / `POST` `/checkout` - Checkout process
+- `GET` `/orders` - View order history
+- `GET` `/order_details/<order_id>` - View order details
 
 #### Seller Routes
-- `GET /seller_dashboard` - Seller dashboard
-- `GET/POST /admin/add_product` - Add new product
-- `GET/POST /edit_product/<product_id>` - Edit product
-- `POST /delete_product/<product_id>` - Delete product
+- `GET` `/seller_dashboard` - Seller dashboard
+- `GET` / `POST` `/admin/add_product` - Add new product
+- `GET` / `POST` `/edit_product/<product_id>` - Edit product
+- `POST` `/delete_product/<product_id>` - Delete product
 
 #### Admin Routes
-- `GET /admin/users` - Admin user management page
-- `GET /admin/api/users` - Get all users (API)
-- `POST /admin/api/users` - Create new user (API)
-- `POST /admin/api/users/<user_id>` - Update user (API)
-- `DELETE /admin/api/users/<user_id>` - Delete user (API)
+- `GET` `/admin/users` - Admin user management page
+- `GET` `/admin/api/users` - Get all users (API)
+- `POST` `/admin/api/users` - Create new user (API)
+- `POST` `/admin/api/users/<user_id>` - Update user (API)
+- `DELETE` `/admin/api/users/<user_id>` - Delete user (API)
 
 #### Notification Routes
-- `GET /api/notifications` - Get user notifications
-- `POST /api/notifications/clear` - Clear all notifications
+- `GET` `/api/notifications` - Get user notifications
+- `POST` `/api/notifications/clear` - Clear all notifications
 
 #### Debug Routes
-- `GET /debug` - Database debug information
+- `GET` `/debug` - Database debug information
 
 ### 🔒 Security Features
 
@@ -614,10 +614,10 @@ E-shop-E-commerce-Website/
 ### 🌐 API Endpoints (VI)
 
 #### Routes Xác Thực
-- `GET/POST /register` - Đăng ký người dùng
-- `GET/POST /login` - Đăng nhập
-- `POST /logout` - Đăng xuất
-- `GET/POST /register_seller` - Đăng ký người bán
+- `GET` / `POST` `/register` - Đăng ký người dùng
+- `GET` / `POST` `/login` - Đăng nhập
+- `POST` `/logout` - Đăng xuất
+- `GET` / `POST` `/register_seller` - Đăng ký người bán
 
 #### Routes Người Dùng
 - `GET /profile` - Trang hồ sơ người dùng
@@ -635,29 +635,29 @@ E-shop-E-commerce-Website/
 - `POST /remove_from_cart/<cart_item_id>` - Xóa mục khỏi giỏ hàng
 
 #### Thanh Toán & Đơn Hàng
-- `GET/POST /checkout` - Quy trình thanh toán
-- `GET /orders` - Xem lịch sử đơn hàng
-- `GET /order_details/<order_id>` - Xem chi tiết đơn hàng
+- `GET` / `POST` `/checkout` - Quy trình thanh toán
+- `GET` `/orders` - Xem lịch sử đơn hàng
+- `GET` `/order_details/<order_id>` - Xem chi tiết đơn hàng
 
 #### Routes Người Bán
-- `GET /seller_dashboard` - Bảng điều khiển người bán
-- `GET/POST /admin/add_product` - Thêm sản phẩm mới
-- `GET/POST /edit_product/<product_id>` - Sửa sản phẩm
-- `POST /delete_product/<product_id>` - Xóa sản phẩm
+- `GET` `/seller_dashboard` - Bảng điều khiển người bán
+- `GET` / `POST` `/admin/add_product` - Thêm sản phẩm mới
+- `GET` / `POST` `/edit_product/<product_id>` - Sửa sản phẩm
+- `POST` `/delete_product/<product_id>` - Xóa sản phẩm
 
 #### Routes Quản Trị
-- `GET /admin/users` - Trang quản lý người dùng admin
-- `GET /admin/api/users` - Lấy tất cả người dùng (API)
-- `POST /admin/api/users` - Tạo người dùng mới (API)
-- `POST /admin/api/users/<user_id>` - Cập nhật người dùng (API)
-- `DELETE /admin/api/users/<user_id>` - Xóa người dùng (API)
+- `GET` `/admin/users` - Trang quản lý người dùng admin
+- `GET` `/admin/api/users` - Lấy tất cả người dùng (API)
+- `POST` `/admin/api/users` - Tạo người dùng mới (API)
+- `POST` `/admin/api/users/<user_id>` - Cập nhật người dùng (API)
+- `DELETE` `/admin/api/users/<user_id>` - Xóa người dùng (API)
 
 #### Routes Thông Báo
-- `GET /api/notifications` - Lấy thông báo người dùng
-- `POST /api/notifications/clear` - Xóa tất cả thông báo
+- `GET` `/api/notifications` - Lấy thông báo người dùng
+- `POST` `/api/notifications/clear` - Xóa tất cả thông báo
 
 #### Routes Debug
-- `GET /debug` - Thông tin debug cơ sở dữ liệu
+- `GET` `/debug` - Thông tin debug cơ sở dữ liệu
 
 ### 🔒 Tính Năng Bảo Mật
 
